@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindOS | Yeni Nesil İşletim Sistemi</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+        .bg-dots {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-300 bg-dots relative antialiased selection:bg-emerald-500 selection:text-slate-950">
+
+    <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center overflow-hidden">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="MindOS Logo" class="h-10 w-10">
+                <span class="text-2xl font-bold tracking-tighter text-white">MindOS</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-slate-400">
+                <a href="#surumler" class="hover:text-emerald-400 transition">Sürümler</a>
+                <a href="#ozellikler" class="hover:text-emerald-400 transition">Özellikler</a>
+                <a href="#komutlar" class="hover:text-emerald-400 transition">Terminal</a>
+                <a href="#sss" class="hover:text-emerald-400 transition">SSS</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container mx-auto px-6 py-24 text-center relative z-10 overflow-hidden">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-sm font-semibold tracking-wide">
+            🚀 Sınırları Kaldırılan Linux Deneyimi
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+            Sisteminize <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Hükmedin.</span>
+        </h1>
+        <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Şifresiz terminal, sihirli kısayollar ve kaya gibi sağlam bir temel. MindOS, bilgisayarınızı tam potansiyeliyle kullanmanız için baştan aşağı optimize edildi.
+        </p>
+    </header>
+
+    <section id="surumler" class="container mx-auto px-6 mb-24 relative z-10">
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="bg-slate-900 rounded-3xl p-8 border border-slate-800 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(16,185,129,0.15)] overflow-hidden group">
+                <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center text-emerald-400 text-2xl mb-6 border border-slate-700 group-hover:border-emerald-500/50 transition-colors">📦</div>
+                <h2 class="text-2xl font-bold mb-3 text-white">MindOS D12</h2>
+                <p class="text-slate-400 mb-6 h-20 text-sm">Kaya gibi sağlam Debian 12 tabanı. Günlük kullanım, yazılım geliştirme ve stabilite arayanlar için kusursuz seçim.</p>
+                <a href="#" target="_blank" class="block w-full text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-4 rounded-full transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40">(GELİŞTİRİLME AŞAMASINDA)</a>
+            </div>
+
+            <div class="bg-slate-900 rounded-3xl p-8 border border-slate-800 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(56,189,248,0.1)] overflow-hidden group">
+                <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center text-emerald-400 text-2xl mb-6 border border-slate-700 group-hover:border-slate-600 transition-colors">⚡</div>
+                <h2 class="text-2xl font-bold mb-3 text-white">MindOS Neon</h2>
+                <p class="text-slate-400 mb-6 h-20 text-sm">En güncel KDE Plasma deneyimi. Performans, estetik ve donanım gücünü en üst seviyede yaşamak isteyenler için.</p>
+                <a href="https://archive.org/details/mind-os-neon" target="_blank" class="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-full transition-all border border-slate-700 hover:border-slate-600">Neon İndir</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="ozellikler" class="container mx-auto px-6 mb-16 max-w-5xl">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 hover:border-emerald-500/30 transition-colors group">
+                <div class="text-emerald-400 text-4xl mb-6 transform group-hover:scale-110 transition-transform">🛠️</div>
+                <h3 class="font-bold text-xl mb-3 text-white">Kolay Kurulum (Calamares)</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Linux kurmak hiç bu kadar basit olmamıştı. Dünyanın en kullanıcı dostu kurulum aracı Calamares sayesinde, MindOS'u sadece birkaç tıklamayla dakikalar içinde diskinize kurabilirsiniz.</p>
+            </div>
+            <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 hover:border-emerald-500/30 transition-colors group">
+                <div class="text-emerald-400 text-4xl mb-6 transform group-hover:scale-110 transition-transform">🔄</div>
+                <h3 class="font-bold text-xl mb-3 text-white">Zahmetsiz Dual-Boot</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">(Slop)dows'tan vazgeçemiyor musunuz? Hiç sorun değil. Kurulum esnasında "(Slop)dows Boot Manager'ın yanına kur" seçeneğini seçin. Veri kaybı riski olmadan özgürlüğü yaşayın.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-6 mb-24 max-w-5xl">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 text-center">
+                <div class="text-emerald-400 text-4xl mb-4">💨</div>
+                <h4 class="font-bold text-white mb-2 text-lg text-emerald-400">Işık Hızında</h4>
+                <p class="text-slate-400 text-sm">Debian'ın ağır yüklerinden arındırılmış, milisaniyeler içinde tepki veren bir çekirdek yapısı.</p>
+            </div>
+            <div class="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 text-center">
+                <div class="text-emerald-400 text-4xl mb-4">🎨</div>
+                <h4 class="font-bold text-white mb-2 text-lg text-emerald-400">Tam Özgürlük</h4>
+                <p class="text-slate-400 text-sm">Görsel her detayı mühürlenmemiş bir tuval gibi düşünün. Temalar ve ikonlar tamamen emrinizde.</p>
+            </div>
+            <div class="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 text-center">
+                <div class="text-emerald-400 text-4xl mb-4">🌌</div>
+                <h4 class="font-bold text-white mb-2 text-lg text-emerald-400">Çoklu Dünya</h4>
+                <p class="text-slate-400 text-sm">D12 ile XFCE'nin sadeliği ve GNOME'un modernliği arasında saniyeler içinde geçiş yapın.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-6 mb-24 max-w-5xl">
+        <h2 class="text-3xl font-bold mb-10 text-white text-center tracking-tight uppercase italic">MindOS Kimler İçin?</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-slate-900/30 p-6 rounded-2xl border border-slate-800 text-center hover:bg-slate-800/50 transition">
+                <div class="text-3xl mb-4">🎮</div>
+                <h4 class="text-lg font-bold text-emerald-400 mb-2">Oyuncular</h4>
+                <p class="text-sm text-slate-400 italic">Steam, Lutris ve Heroic ile (Slop)dows oyunlarını performans kaybı yaşamadan açın.</p>
+            </div>
+            <div class="bg-slate-900/30 p-6 rounded-2xl border border-slate-800 text-center hover:bg-slate-800/50 transition">
+                <div class="text-3xl mb-4">💻</div>
+                <h4 class="text-lg font-bold text-emerald-400 mb-2">Geliştiriciler</h4>
+                <p class="text-sm text-slate-400 italic">Docker, Git ve VS Code için optimize edilmiş, sizi yarı yolda bırakmayan stabil ortam.</p>
+            </div>
+            <div class="bg-slate-900/30 p-6 rounded-2xl border border-slate-800 text-center hover:bg-slate-800/50 transition">
+                <div class="text-3xl mb-4">☕</div>
+                <h4 class="text-lg font-bold text-emerald-400 mb-2">Son Kullanıcı</h4>
+                <p class="text-sm text-slate-400 italic">Karmaşık Linux dünyasını unutun. Web'de gezin, film izle ve ofis işlerini tek tıkla hallet.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-6 mb-24 max-w-5xl">
+        <div class="bg-slate-900/50 backdrop-blur-sm rounded-[3rem] p-8 md:p-12 border border-slate-800 text-center relative overflow-hidden shadow-2xl">
+            <h2 class="text-3xl font-bold mb-4 text-white tracking-tight">Her Platformda Uyumlu</h2>
+            <p class="text-slate-400 mb-10 max-w-xl mx-auto italic">Dizüstü, masaüstü ve 2'si 1 arada cihazlarınızda kusursuz uyum. Dokunmatik ekran desteği hazır.</p>
+            <img src="cihazlar.png" alt="MindOS Çoklu Platform" class="w-full rounded-3xl mx-auto border-4 border-slate-800/50 relative z-10 transition hover:scale-[1.02] duration-500">
+        </div>
+    </section>
+
+    <section id="komutlar" class="container mx-auto px-6 mb-24 max-w-5xl">
+        <div class="bg-slate-900 rounded-3xl p-1 border border-slate-800 shadow-2xl relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-b from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            
+            <div class="p-8 md:p-12 text-center relative z-10">
+                <h2 class="text-3xl font-bold mb-4 text-white uppercase tracking-widest">Sihirli Terminal</h2>
+                <p class="text-slate-400 mb-10 max-w-2xl mx-auto italic">MindOS'a özel olarak mühürlenmiş kısayollarla (alias) sisteminize en hızlı şekilde hükmedin.</p>
+
+                <div class="text-left bg-[#0d1117] rounded-xl border border-slate-700 shadow-2xl overflow-hidden font-mono text-sm max-w-3xl mx-auto transform transition-transform hover:scale-[1.01]">
+                    <div class="flex items-center justify-between px-4 py-2.5 bg-slate-800 border-b border-slate-700 select-none">
+                        <div class="flex gap-2">
+                             <span class="text-slate-500 hover:text-white cursor-pointer font-bold text-xs">_</span>
+                             <span class="text-slate-500 hover:text-white cursor-pointer font-bold text-xs">◻</span>
+                             <span class="text-slate-500 hover:text-rose-500 cursor-pointer font-bold text-xs">✕</span>
+                        </div>
+                        <div class="mx-auto text-slate-300 text-xs font-sans font-medium">💻 mindos@user : ~</div>
+                    </div>
+                    <div class="p-6 text-emerald-400 space-y-5">
+                        <div><span class="text-slate-500"># Yeni bir paket kurmak (Şifresiz!)</span><br><span class="text-emerald-300">mindos@user:~$</span> yukle discord</div>
+                        <div><span class="text-slate-500"># Masaüstü ortamlarını anında yükle ve geçiş yap</span><br><span class="text-emerald-300">mindos@user:~$</span> yukle-xfce <span class="text-slate-500">|</span> yukle-gnome</div>
+                        <div><span class="text-slate-500"># Tüm sistemi tek kelimeyle güncelle</span><br><span class="text-emerald-300">mindos@user:~$</span> guncelle</div>
+                        <div><span class="text-slate-500"># Kalıntı bırakmadan program sil</span><br><span class="text-emerald-300">mindos@user:~$</span> sil firefox</div>
+                        <div><span class="text-slate-500"># MindOS sistem kimliğini göster</span><br><span class="text-emerald-300">mindos@user:~$</span> mindos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-6 mb-24 max-w-4xl">
+        <h2 class="text-3xl font-bold mb-10 text-white text-center tracking-tight">Donanım Gücü</h2>
+        <div class="bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden flex flex-col md:flex-row shadow-xl">
+            <div class="flex-1 p-8 border-b md:border-b-0 md:border-r border-slate-800">
+                <h3 class="text-xl font-bold text-emerald-400 mb-4 flex items-center gap-2 underline decoration-2 underline-offset-8">📦 D12</h3>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li><strong class="text-slate-200">RAM:</strong> 2 GB Minimum</li>
+                    <li><strong class="text-slate-200">Disk:</strong> 20 GB HDD/SSD</li>
+                    <li><strong class="text-slate-200">GPU:</strong> Entegre Grafikler</li>
+                </ul>
+            </div>
+            <div class="flex-1 p-8">
+                <h3 class="text-xl font-bold text-teal-400 mb-4 flex items-center gap-2 underline decoration-2 underline-offset-8">⚡ Neon</h3>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li><strong class="text-slate-200">RAM:</strong> 4 GB ve Üzeri</li>
+                    <li><strong class="text-slate-200">Disk:</strong> 30 GB SSD Önerilir</li>
+                    <li><strong class="text-slate-200">GPU:</strong> Harici Ekran Kartı Önerilir</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="sss" class="container mx-auto px-6 mb-24 max-w-3xl">
+        <h2 class="text-3xl font-bold mb-10 text-white text-center tracking-tight">Merak Edilenler</h2>
+        <div class="grid gap-4">
+            <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 transition hover:border-emerald-500/20">
+                <h4 class="text-lg font-bold text-white mb-2 italic">MindOS ücretli mi?</h4>
+                <p class="text-sm text-slate-400">Hayır, MindOS tamamen açık kaynaklı ve ücretsiz bir topluluk projesidir.</p>
+            </div>
+            <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 transition hover:border-emerald-500/20">
+                <h4 class="text-lg font-bold text-white mb-2 italic">Dual-Boot güvenli mi?</h4>
+                <p class="text-sm text-slate-400">Evet, Calamares ile yan yana kurulum yaparak sistemlerinizi bağımsız kullanabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="eski-surumler" class="container mx-auto px-6 mb-24 max-w-3xl">
+        <h2 class="text-2xl font-bold mb-6 text-white tracking-tight flex items-center gap-3 italic underline decoration-emerald-500">
+            📂 Arşiv Sürümleri
+        </h2>
+        <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
+            <div class="flex justify-between items-center p-5 border-b border-slate-800 hover:bg-slate-800/50 transition">
+                <div>
+                    <h4 class="font-semibold text-slate-200">Mevcut Değil</h4>
+                    <span class="text-xs text-slate-500">----- ----</span>
+                </div>
+                <a href="#" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium rounded-full transition border border-slate-700">-----</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container mx-auto px-6 py-8 border-t border-slate-800 text-center flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+        <div class="flex items-center gap-2 mb-4 md:mb-0">
+            <img src="logo.png" class="h-6 w-6">
+            <span class="font-bold text-slate-300">MindOS Project 2026</span>
+        </div>
+        <div class="flex gap-6 items-center">
+            <a href="https://instagram.com/mindos._" target="_blank" class="hover:text-emerald-400 transition font-medium flex items-center gap-1 italic">
+                Instagram (@mindos._)
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
