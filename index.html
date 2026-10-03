@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindOS | Sistem Güncellemesi</title>
+    <title>MindOS | GNOME Sürümü Hazırlanıyor</title>
     <link rel="icon" type="image/png" href="logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-canvas: #070a0f;
-            --surface-panel: #0d131d;
-            --surface-border: #162030;
-            --accent-cyan: #38bdf8;
+            --bg-shell: #070b12;
+            --surface-ground: #0b111d;
+            --surface-raised: #10192a;
+            --border-subtle: #19263e;
+            --border-focus: #38bdf8;
+            --accent-primary: #38bdf8;
+            --accent-hover: #0284c7;
+            --text-heading: #ffffff;
+            --text-body: #94a3b8;
+            --text-lead: #cbd5e1;
         }
 
         body {
-            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-canvas);
-            color: #94a3b8;
+            font-family: 'Cantarell', -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-shell);
+            color: var(--text-body);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -32,23 +38,23 @@
         h1 {
             font-size: clamp(2.25rem, 5vw, 3.5rem);
             line-height: 1.15;
-            font-weight: 800;
+            font-weight: 700;
             letter-spacing: -0.03em;
-            color: #ffffff;
+            color: var(--text-heading);
         }
 
         h2 {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             line-height: 1.4;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--text-heading);
         }
 
         .lead-text {
             font-size: 1.125rem;
-            line-height: 1.7;
-            color: #cbd5e1;
+            line-height: 1.75;
+            color: var(--text-lead);
         }
 
         ::selection {
@@ -56,119 +62,296 @@
             color: #ffffff;
         }
 
-        .content-panel {
-            background-color: var(--surface-panel);
-            border: 1px solid var(--surface-border);
-            padding: 2rem;
+        /* Libadwaita Window Frame */
+        .gnome-window {
+            background-color: var(--surface-ground);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            overflow: hidden;
         }
 
-        header {
-            padding: 0 1.5rem;
+        .gnome-headerbar {
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0.75rem 1.25rem;
         }
 
-        footer {
-            padding: 1.5rem;
+        /* Libadwaita Preferences List Row */
+        .adw-row {
+            padding: 1rem 1.25rem;
+            transition: background-color 0.15s ease;
+        }
+
+        .adw-row:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Tab Buttons */
+        .tab-btn {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: #94a3b8;
+            padding: 0.375rem 0.875rem;
+            border-radius: 0.375rem;
+            transition: all 0.15s ease;
+            min-height: 36px;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            color: #ffffff;
+            background-color: #16243b;
         }
 
         a:focus-visible, button:focus-visible {
-            outline: 2px solid var(--accent-cyan);
+            outline: 2px solid var(--border-focus);
             outline-offset: 3px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-600 selection:text-white">
 
-    <!-- Üst Bar / Header -->
-    <header class="w-full border-b border-[#141d2b] bg-[#070a0f] sticky top-0 z-40 px-6">
-        <div class="max-w-5xl mx-auto h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="MindOS Logo" class="w-8 h-8 object-contain">
-                <span class="text-white font-bold tracking-tight text-lg">MindOS</span>
-            </div>
+    <!-- GNOME Panel / Üst Çubuk -->
+    <header class="w-full border-b border-[#141e30] bg-[#05080f]/95 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto h-12 px-4 sm:px-6 flex items-center justify-between text-xs font-medium">
             
-            <div class="flex items-center gap-2 text-xs font-medium text-slate-300 bg-[#0e1522] border border-[#1a2538] px-3 py-1.5 rounded-lg">
-                <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-                <span>Bakım Modu</span>
+            <!-- Sol: GNOME Menüsü / Marka İmzası -->
+            <div class="flex items-center gap-3">
+                <a href="#" class="flex items-center gap-2 text-white hover:text-sky-300 transition-colors py-1 px-2 rounded-md hover:bg-white/5">
+                    <img src="logo.png" alt="MindOS Sembolü" class="w-5 h-5 object-contain">
+                    <span class="font-bold tracking-tight text-sm">MindOS</span>
+                </a>
+                <span class="text-slate-500 hidden sm:inline">|</span>
+                <span class="text-slate-400 font-medium hidden sm:inline">GNOME Shell 47</span>
             </div>
+
+            <!-- Orta: GNOME Canlı Saat & Tarih -->
+            <div id="gnome-clock" class="text-slate-300 font-semibold px-2.5 py-1 rounded-md bg-white/5 tracking-normal">
+                Yükleniyor...
+            </div>
+
+            <!-- Sağ: GNOME Sistem Kapsülü (Ağ / Ses / Güç) -->
+            <div class="relative">
+                <button type="button" id="system-menu-btn" onclick="toggleGnomeMenu()" aria-expanded="false" aria-controls="gnome-quick-settings" class="flex items-center gap-2 bg-[#0c1422] hover:bg-[#121c2e] active:bg-[#090f1a] border border-[#17253b] text-slate-300 hover:text-white px-2.5 py-1 rounded-full transition-colors cursor-pointer min-h-[32px]">
+                    <!-- Ağ İkonu -->
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                        <line x1="12" y1="20" x2="12.01" y2="20"/>
+                    </svg>
+                    <!-- Ses İkonu -->
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                    <!-- Güç İkonu -->
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 7v5"/>
+                    </svg>
+                </button>
+
+                <!-- GNOME Hızlı Ayarlar Açılır Paneli -->
+                <div id="gnome-quick-settings" class="hidden absolute right-0 mt-2 w-72 bg-[#0c1422] border border-[#1b2b45] rounded-2xl p-4 shadow-xl z-50 text-left">
+                    <div class="flex items-center justify-between pb-3 border-b border-[#16233a] mb-3">
+                        <div class="flex items-center gap-2">
+                            <img src="logo.png" alt="Logo" class="w-4 h-4 object-contain">
+                            <span class="text-white font-bold text-xs">MindOS GNOME</span>
+                        </div>
+                        <span class="text-[11px] font-mono font-semibold text-sky-400 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/60">Canlı Önizleme</span>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-slate-300">
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-slate-400">Masaüstü:</span>
+                            <span class="font-semibold text-white">GNOME &amp; Wayland</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-slate-400">Taban:</span>
+                            <span class="font-semibold text-white">Debian 13 (Trixie)</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-slate-400">Durum:</span>
+                            <span class="text-sky-300 font-semibold">Web Sitesi Yenileniyor</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-[#16233a]">
+                        <a href="https://instagram.com/mindosturkiye" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-2 px-3 rounded-lg bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-slate-950 font-bold text-xs transition-colors">
+                            @mindosturkiye Takip Et
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </header>
 
-    <!-- Ana Gövde -->
-    <main class="flex-1 flex flex-col items-center justify-center px-6 py-16 sm:py-20 max-w-4xl mx-auto w-full">
+    <!-- Ana Çalışma Alanı -->
+    <main class="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-12 sm:py-16 max-w-4xl mx-auto w-full">
         
-        <!-- Ürün İmzası / Logo -->
-        <div class="mb-10 flex flex-col items-center">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#0b101a] border border-[#1a2538] flex items-center justify-center p-3.5">
-                <img src="logo.png" alt="MindOS D12 Sembolü" class="w-full h-full object-contain">
+        <!-- Ürün İmzası / Kristal Lotus Logosu -->
+        <div class="mb-8 flex flex-col items-center">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-[#090f1a] border border-[#1b2b45] flex items-center justify-center p-3.5 relative">
+                <img src="logo.png" alt="MindOS Kristal Lotus Logosu" class="w-full h-full object-contain">
             </div>
         </div>
 
-        <!-- Başlık: Belirgin hiyerarşi, solid beyaz renk -->
+        <!-- Ana Başlık (Eyebrow / Kicker bulunmaz - Craft Floor standardı) -->
         <h1 class="text-center max-w-3xl mb-6">
-            Yeni MindOS Deneyimi İçin Websitemizi Yeniliyoruz
+            Yeni Nesil MindOS GNOME Sürümü İçin Hazırlanıyoruz
         </h1>
 
         <!-- Açıklama Metni: Kullanıcının İstediği Özel Mesaj -->
-        <p class="lead-text text-center max-w-2xl mb-12">
+        <p class="lead-text text-center max-w-2xl mb-10">
             Size en yeni MindOS sürümümüzü kavuşturmak için sabırsızlanıyoruz fakat önce websitemizi biraz düzenlememiz lazım. Anlayışınız için teşekkür ederiz.
         </p>
 
-        <!-- Yapılandırılmış Durum Kartı (Cramped padding önlendi, temiz hiyerarşi) -->
-        <div class="w-full max-w-2xl content-panel rounded-2xl p-6 sm:p-8 mb-10">
-            <div class="flex items-center justify-between pb-5 border-b border-[#162030] mb-6">
-                <div>
-                    <h2>Geliştirme Özeti</h2>
-                    <p class="text-xs text-slate-400 mt-0.5">Sürüm geçişi ve teknik altyapı hazırlığı</p>
+        <!-- Libadwaita Masaüstü Penceresi (Sistem Durumu & Canlı Bilgi Merkezi) -->
+        <div class="w-full max-w-2xl gnome-window mb-10">
+            
+            <!-- Pencere Başlık Çubuğu & Adwaita Görünüm Seçici -->
+            <div class="gnome-headerbar flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-2 self-start sm:self-auto">
+                    <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block" title="Kapat"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block" title="Simge Durumuna Küçült"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" title="Büyüt"></span>
+                    <span class="text-xs font-semibold text-slate-300 ml-2">MindOS Kontrol Paneli</span>
                 </div>
-                <span class="text-xs font-mono font-medium text-sky-400 bg-[#091424] border border-[#18324f] px-2.5 py-1 rounded">
-                    D12 / PARADISE
-                </span>
+
+                <!-- Adwaita Görünüm Seçici (View Switcher) -->
+                <div role="tablist" class="flex items-center gap-1 w-full sm:w-auto justify-center">
+                    <button type="button" role="tab" id="tab-durum" aria-selected="true" aria-controls="panel-durum" onclick="switchGnomeTab('durum')" class="tab-btn active flex-1 sm:flex-initial">
+                        Genel Durum
+                    </button>
+                    <button type="button" role="tab" id="tab-gnome" aria-selected="false" aria-controls="panel-gnome" onclick="switchGnomeTab('gnome')" class="tab-btn flex-1 sm:flex-initial">
+                        GNOME Deneyimi
+                    </button>
+                    <button type="button" role="tab" id="tab-mimari" aria-selected="false" aria-controls="panel-mimari" onclick="switchGnomeTab('mimari')" class="tab-btn flex-1 sm:flex-initial">
+                        Sistem Mimarisi
+                    </button>
+                </div>
             </div>
 
-            <div class="space-y-2.5 text-sm">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 p-3 rounded-lg bg-[#0a0f18] border border-[#141e2e]">
-                    <span class="text-slate-400 font-medium">Temel Mimari</span>
-                    <span class="text-white font-medium flex items-center gap-2">
-                        <span class="text-sky-400 font-mono text-xs">●</span>
-                        Debian 13 (Trixie) tabanında hafifletilmiş çekirdek
-                    </span>
+            <!-- Pencere İçeriği: Libadwaita Bölümlü Liste Yapısı -->
+            <div id="panel-durum" role="tabpanel" aria-labelledby="tab-durum" class="divide-y divide-[#142034]">
+                    <div class="adw-row flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h2 class="text-sm font-semibold text-white">Web Sitesi ve Altyapı</h2>
+                            <p class="text-xs text-slate-400 mt-0.5">Yeni sürüm indirme portali ve dokümantasyon sayfaları hazırlanıyor.</p>
+                        </div>
+                        <span class="text-xs font-mono font-semibold text-sky-300 bg-sky-950/70 border border-sky-800/60 px-2.5 py-1 rounded self-start sm:self-auto">
+                            YAPIM AŞAMASINDA
+                        </span>
+                    </div>
+
+                    <div class="adw-row flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h2 class="text-sm font-semibold text-white">Masaüstü Entegrasyonu</h2>
+                            <p class="text-xs text-slate-400 mt-0.5">GNOME Shell 47 ve Wayland tabanlı pürüzsüz grafik arayüzü hazırlandı.</p>
+                        </div>
+                        <span class="text-xs font-mono font-semibold text-teal-300 bg-teal-950/70 border border-teal-800/60 px-2.5 py-1 rounded self-start sm:self-auto">
+                            GNOME 47
+                        </span>
+                    </div>
+
+                    <div class="adw-row flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h2 class="text-sm font-semibold text-white">Sistem Temeli</h2>
+                            <p class="text-xs text-slate-400 mt-0.5">Debian 13 (Trixie) çekirdeği üzerinde yüksek kararlılık ve güncel paketler.</p>
+                        </div>
+                        <span class="text-xs font-mono font-semibold text-indigo-300 bg-indigo-950/70 border border-indigo-800/60 px-2.5 py-1 rounded self-start sm:self-auto">
+                            DEBIAN 13
+                        </span>
+                    </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 p-3 rounded-lg bg-[#0a0f18] border border-[#141e2e]">
-                    <span class="text-slate-400 font-medium">Arayüz &amp; Deneyim</span>
-                    <span class="text-white font-medium flex items-center gap-2">
-                        <span class="text-sky-400 font-mono text-xs">●</span>
-                        Yeni nesil KDE Plasma &amp; Wayland entegrasyonu
-                    </span>
+                <!-- Sekme 2: GNOME Deneyimi -->
+                <div id="panel-gnome" role="tabpanel" aria-labelledby="tab-gnome" class="hidden divide-y divide-[#142034]">
+                    <div class="adw-row">
+                        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                            <span class="text-sky-400">●</span> Libadwaita &amp; GTK4 Tasarımı
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            GNOME Ekosisteminin en saf tasarım yönergelerine sadık kalınarak oluşturulan modern pencere yönetimi, tutarlı karanlık tema ve temiz tipografi.
+                        </p>
+                    </div>
+
+                    <div class="adw-row">
+                        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                            <span class="text-sky-400">●</span> Akıcı Wayland Dokunmatik Jestleri
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Yırtılmasız pencere geçişleri, çok parmaklı masaüstü jestleri ve yüksek çözünürlüklü ekranlarda kusursuz fractional scaling desteği.
+                        </p>
+                    </div>
+
+                    <div class="adw-row">
+                        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                            <span class="text-sky-400">●</span> Dikkat Dağıtmayan İş İstasyonu
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Geliştiriciler, öğrenciler ve profesyoneller için fazlalıklardan arındırılmış, yalnızca üretkenliğinize odaklanan sade GNOME çalışma alanı.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 p-3 rounded-lg bg-[#0a0f18] border border-[#141e2e]">
-                    <span class="text-slate-400 font-medium">Web Portalı</span>
-                    <span class="text-sky-300 font-medium flex items-center gap-2">
-                        <span class="text-sky-400 font-mono text-xs">●</span>
-                        Yeni indirme sunucuları ve dökümantasyon hazırlığı
-                    </span>
+                <!-- Sekme 3: Sistem Mimarisi -->
+                <div id="panel-mimari" role="tabpanel" aria-labelledby="tab-mimari" class="hidden divide-y divide-[#142034]">
+                    <div class="adw-row">
+                        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                            <span class="text-sky-400">●</span> Debian 13 (Trixie) Kararlılığı
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Kaya gibi sağlam Debian paketleme standardı sayesinde sistem çökmelerine karşı maksimum direnç ve güvenilirlik.
+                        </p>
+                    </div>
+
+                    <div class="adw-row">
+                        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                            <span class="text-sky-400">●</span> Flatpak &amp; APT Hibrit Paket Desteği
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            İzole edilmiş modern Flatpak uygulamaları ile Debian'ın geniş yerel yazılım havuzunun kusursuz birlikteliği.
+                        </p>
+                    </div>
+
+                    <div class="adw-row">
+                        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                            <span class="text-sky-400">●</span> MindOS Özelleştirilmiş Çekirdek
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Masaüstü tepkiselliği ve pil verimliliği için ince ayarlarla optimize edilmiş Linux çekirdek konfigürasyonu.
+                        </p>
+                    </div>
                 </div>
-            </div>
+
         </div>
 
-        <!-- Eylem & Sosyal Butonlar -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-            <a href="https://instagram.com/mindosturkiye" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm transition-colors">
+        <!-- Butonlar & Sosyal Bağlantılar -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
+            <!-- Instagram (Öncelikli Eylem) -->
+            <a href="https://instagram.com/mindosturkiye" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-slate-950 font-bold text-sm transition-colors">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
                 <span>Instagram @mindosturkiye</span>
             </a>
 
-            <a href="https://github.com/MindOS-Official" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#0c121c] hover:bg-[#121a28] text-slate-200 hover:text-white font-medium text-sm border border-[#1a2538] transition-colors">
+            <!-- GitHub Bağlantısı -->
+            <a href="https://github.com/MindOS-Official" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#0d1524] hover:bg-[#142036] active:bg-[#090f1a] text-slate-200 hover:text-white font-semibold text-sm border border-[#1b2a44] transition-colors">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
-                <span>GitHub Repoları</span>
+                <span>GitHub Sayfası</span>
             </a>
 
-            <button type="button" id="copy-btn" onclick="copyPageUrl()" class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#0c121c] hover:bg-[#121a28] text-slate-300 hover:text-white font-medium text-sm border border-[#1a2538] transition-colors cursor-pointer">
+            <!-- Bağlantıyı Kopyala Butonu -->
+            <button type="button" id="copy-btn" onclick="copyPageUrl()" class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#0d1524] hover:bg-[#142036] active:bg-[#090f1a] text-slate-300 hover:text-white font-medium text-sm border border-[#1b2a44] transition-colors cursor-pointer">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                     <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
                     <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
@@ -179,31 +362,91 @@
 
     </main>
 
-    <!-- Alt Bilgi / Footer -->
-    <footer class="w-full border-t border-[#141d2b] py-6 px-6 bg-[#070a0f]">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+    <!-- GNOME Tabanlı Alt Bilgi / Footer -->
+    <footer class="w-full border-t border-[#141e30] bg-[#05080f]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <div class="flex items-center gap-2">
-                <img src="logo.png" alt="Logo" class="w-4 h-4 opacity-70">
-                <span>MindOS Projesi &copy; 2026</span>
+                <img src="logo.png" alt="Logo" class="w-4 h-4 opacity-80">
+                <span class="font-semibold text-slate-300">MindOS Projesi &copy; 2026</span>
             </div>
             
-            <p class="text-slate-400">
-                Gelişmeler ve sürüm duyuruları için resmi Instagram hesabımızı takip edebilirsiniz.
+            <p class="text-slate-400 text-center sm:text-right">
+                Gelişmeler ve duyurular için resmi Instagram hesabımız: 
+                <a href="https://instagram.com/mindosturkiye" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline font-medium">@mindosturkiye</a>
             </p>
         </div>
     </footer>
 
+    <!-- Etkileşim Scriptleri -->
     <script>
+        // GNOME Saati Güncelleme
+        function updateGnomeClock() {
+            const clockEl = document.getElementById('gnome-clock');
+            if (!clockEl) return;
+            const now = new Date();
+            const days = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+            const dayName = days[now.getDay()];
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            clockEl.textContent = `${dayName} ${hours}:${minutes}`;
+        }
+        updateGnomeClock();
+        setInterval(updateGnomeClock, 30000);
+
+        // GNOME Hızlı Ayarlar Menüsü Aç/Kapa
+        function toggleGnomeMenu() {
+            const menu = document.getElementById('gnome-quick-settings');
+            const btn = document.getElementById('system-menu-btn');
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                menu.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        // Sayfa dışına tıklandığında menüyü kapat
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('gnome-quick-settings');
+            const btn = document.getElementById('system-menu-btn');
+            if (!menu || !btn) return;
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Libadwaita Görünüm Seçici Sekme Geçişi
+        function switchGnomeTab(tabId) {
+            const tabs = ['durum', 'gnome', 'mimari'];
+            tabs.forEach(id => {
+                const btn = document.getElementById(`tab-${id}`);
+                const panel = document.getElementById(`panel-${id}`);
+                if (id === tabId) {
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+
+        // Bağlantıyı Kopyalama Fonksiyonu
         function copyPageUrl() {
             const btn = document.getElementById('copy-btn');
             const label = document.getElementById('copy-text');
             navigator.clipboard.writeText(window.location.href).then(() => {
                 const originalText = label.textContent;
                 label.textContent = "Bağlantı Kopyalandı!";
-                btn.classList.add('text-sky-400', 'border-sky-500/50');
+                btn.classList.add('text-sky-400', 'border-sky-500');
                 setTimeout(() => {
                     label.textContent = originalText;
-                    btn.classList.remove('text-sky-400', 'border-sky-500/50');
+                    btn.classList.remove('text-sky-400', 'border-sky-500');
                 }, 2500);
             }).catch(() => {
                 label.textContent = "Kopyalanamadı";
