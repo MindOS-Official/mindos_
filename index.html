@@ -219,9 +219,9 @@ footer p{margin-top:1rem;color:var(--mut);font-size:.9rem}
   </div>
   <div class="card dl rv">
    <span class="tag" data-i18n="tag_stable">Kararlı</span>
-   <h3>Neon (V3)</h3>
+   <h3>Neon (v3.1)</h3>
    <p data-i18n="neon_d">Ubuntu ve KDE tabanlı kararlı sürüm. Hafiflik ve geleneksel masaüstü deneyimi arayanlar için.</p>
-   <a class="btn" data-iso="neon" data-i18n="btn_neon" href="#indir">Neon (V3) ISO İndir</a>
+   <a class="btn" data-iso="neon" data-i18n="btn_neon" href="#indir">Neon (v3.1) ISO İndir</a>
   </div>
   <div class="card dl rv">
    <span class="tag beta" data-i18n="tag_dev">Geliştirilme Aşamasında</span>
@@ -238,7 +238,7 @@ footer p{margin-top:1rem;color:var(--mut);font-size:.9rem}
 </footer>
 
 <script>
-const ISO={neon:"https://drive.google.com/file/d/1PIuAwEl70MhuThNEwH-8iepGAXYy-hr4/view?usp=sharing",paradise:"https://drive.google.com/file/d/1Mh36s-CQ33w3pTEavmSkJ3PjKIclfuqa/view?usp=sharing",sunrise:"#indir"};
+const ISO={neon:"https://drive.google.com/file/d/18U_giJnQnkLwnYHsBoRfxrOhks4tjo3a/view?usp=sharing",paradise:"https://drive.google.com/file/d/1Mh36s-CQ33w3pTEavmSkJ3PjKIclfuqa/view?usp=sharing",sunrise:"#indir"};
 document.querySelectorAll('[data-iso]').forEach(a=>{a.href=ISO[a.dataset.iso];if(/^https?:/.test(a.href)){a.target='_blank';a.rel='noopener'}});
 
 document.querySelector('nav img').src=document.querySelector('footer img').src;
@@ -295,7 +295,7 @@ en:{
  neon_d:'Ubuntu and KDE-based stable release. Recommended for those seeking lightness and a classic desktop experience.',
  paradise_d:'The most refined stable release of MindOS. Recommended for daily use with GNOME desktop environment, native mindpkg package manager integration, low resource usage and smooth performance.',
  sunrise_d:'Built from scratch with a custom-compiled Linux kernel and dedicated repository. (Coming very soon)',
- btn_neon:'Download Neon (V3) ISO',btn_paradise:'Download Paradise ISO',btn_sunrise:'In Development'
+ btn_neon:'Download Neon (v3.1) ISO',btn_paradise:'Download Paradise ISO',btn_sunrise:'In Development'
 },
 ru:{
  nav_what:'Что такое MindOS?',nav_feat:'Возможности',nav_dl:'Скачать',
@@ -320,7 +320,7 @@ ru:{
  neon_d:'Стабильный выпуск на основе Ubuntu и KDE. Рекомендуется для тех, кто ищет лёгкости и классического рабочего стола.',
  paradise_d:'Самый проработанный стабильный выпуск MindOS. Рекомендуется для ежедневного использования со средой GNOME, интеграцией пакетного менеджера mindpkg, низким потреблением ресурсов и плавной работой.',
  sunrise_d:'Создан с нуля с кастомным ядром Linux и собственным репозиторием. (Совсем скоро)',
- btn_neon:'Скачать ISO Neon (V3)',btn_paradise:'Скачать ISO Paradise',btn_sunrise:'В разработке'
+ btn_neon:'Скачать ISO Neon (v3.1)',btn_paradise:'Скачать ISO Paradise',btn_sunrise:'В разработке'
 },
 es:{
  nav_what:'¿Qué es MindOS?',nav_feat:'Características',nav_dl:'Descargar',
@@ -345,7 +345,7 @@ es:{
  neon_d:'Versión estable basada en Ubuntu y KDE. Recomendada para quienes buscan ligereza y una experiencia de escritorio clásica.',
  paradise_d:'La versión más cuidada de MindOS. Recomendada para uso diario con entorno GNOME, integración nativa de mindpkg, bajo consumo de recursos y rendimiento fluido.',
  sunrise_d:'Construida desde cero con un kernel de Linux personalizado y repositorio propio. (Muy pronto)',
- btn_neon:'Descargar ISO de Neon (V3)',btn_paradise:'Descargar ISO de Paradise',btn_sunrise:'En desarrollo'
+ btn_neon:'Descargar ISO de Neon (v3.1)',btn_paradise:'Descargar ISO de Paradise',btn_sunrise:'En desarrollo'
 }};
 T.tr.start='Hadi başlayalım';
 const i18nEls=[...document.querySelectorAll('[data-i18n]')];
