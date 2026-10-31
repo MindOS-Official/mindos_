@@ -70,6 +70,11 @@ h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.03em;line-h
 .card.featured h3{font-size:1.75rem;color:#fff;margin-bottom:0;}
 .card.featured p{font-size:1.02rem;max-width:68ch;margin-bottom:0;color:var(--tx);opacity:.92;}
 .card.featured .btn{margin-top:0;padding:1rem 2.2rem;font-size:1.05rem;white-space:nowrap;}
+.dl-arch{display:flex;flex-direction:column;gap:.8rem;flex:0 0 auto}
+.card.featured .dl-arch .btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.85rem 2.2rem;min-width:15rem}
+.dl-arch .btn small{font:500 .74rem 'Sora',sans-serif;opacity:.75;white-space:normal}
+.btn.alt{background:transparent;color:#fff;border:1px solid color-mix(in srgb,var(--em) 70%,transparent)}
+@media(max-width:680px){.dl-arch{width:100%}.card.featured .dl-arch .btn{min-width:0;white-space:normal}}
 .tag.featured-tag{background:color-mix(in srgb,var(--em) 30%,transparent);color:#fff;border:1px solid color-mix(in srgb,var(--em) 60%,transparent);font-weight:600;}
 #mindpkg{padding-bottom:4vh}.ui b{font-weight:600;color:var(--mint);font-size:1.1rem}.ui p{font-size:.88rem;color:var(--mut);line-height:1.6}
 .ui{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
@@ -218,7 +223,10 @@ footer p{margin-top:.8rem;color:var(--mut);font-size:.9rem}
     <h3>Paradise</h3>
     <p data-i18n="paradise_d">MindOS'un en çok emek verilen kararlı sürümü. GNOME masaüstü ortamı, yerleşik mindpkg paket yöneticisi entegrasyonu, düşük sistem tüketimi ve akıcı bir deneyimle günlük kullanım için önerilir.</p>
    </div>
-   <a class="btn" data-iso="paradise" data-i18n="btn_paradise" href="https://github.com/MindOS-Official/paradise/releases/download/v1.0.2/MindOS-Paradise-v1.0.2.iso" target="_blank" rel="noopener">Paradise ISO İndir</a>
+   <div class="dl-arch">
+    <a class="btn" data-iso="paradise" href="https://github.com/MindOS-Official/paradise/releases/download/v1.0.2/MindOS-Paradise-v1.0.2.iso" target="_blank" rel="noopener"><span data-i18n="btn_paradise_amd64">amd64 İndir</span><small data-i18n="arch_amd64">Intel / AMD bilgisayarlar</small></a>
+    <a class="btn alt" data-iso="paradise_arm64" href="https://drive.google.com/file/d/1gQsIlk1-Beo2sLTkEQpBeN4nL0zJ3xOQ/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="btn_paradise_arm64">arm64 İndir</span><small data-i18n="arch_arm64">Apple Silicon (M1/M2), Raspberry Pi 4/5</small></a>
+   </div>
   </div>
   <div class="card dl rv">
    <span class="tag" data-i18n="tag_stable">Kararlı</span>
@@ -247,7 +255,7 @@ footer p{margin-top:.8rem;color:var(--mut);font-size:.9rem}
 </footer>
 
 <script>
-const ISO={neon:"https://drive.google.com/file/d/18U_giJnQnkLwnYHsBoRfxrOhks4tjo3a/view?usp=sharing",paradise:"https://github.com/MindOS-Official/paradise/releases/download/v1.0.2/MindOS-Paradise-v1.0.2.iso",sunrise:"#indir"};
+const ISO={neon:"https://drive.google.com/file/d/18U_giJnQnkLwnYHsBoRfxrOhks4tjo3a/view?usp=sharing",paradise:"https://github.com/MindOS-Official/paradise/releases/download/v1.0.2/MindOS-Paradise-v1.0.2.iso",paradise_arm64:"https://drive.google.com/file/d/1gQsIlk1-Beo2sLTkEQpBeN4nL0zJ3xOQ/view?usp=sharing",sunrise:"#indir"};
 document.querySelectorAll('[data-iso]').forEach(a=>{a.href=ISO[a.dataset.iso];if(/^https?:/.test(a.href)){a.target='_blank';a.rel='noopener'}});
 
 document.querySelector('nav img').src=document.querySelector('footer img').src;
@@ -304,7 +312,7 @@ en:{
  neon_d:'Ubuntu and KDE-based stable release. Recommended for those seeking lightness and a classic desktop experience.',
  paradise_d:'The most refined stable release of MindOS. Recommended for daily use with GNOME desktop environment, native mindpkg package manager integration, low resource usage and smooth performance.',
  sunrise_d:'Built from scratch with a custom-compiled Linux kernel and dedicated repository. (Coming very soon)',
- btn_neon:'Download Neon (v3.1) ISO',btn_paradise:'Download Paradise ISO',btn_sunrise:'In Development'
+ btn_neon:'Download Neon (v3.1) ISO',btn_paradise:'Download Paradise ISO',btn_paradise_amd64:'Download amd64',btn_paradise_arm64:'Download arm64',arch_amd64:'Intel / AMD computers',arch_arm64:'Apple Silicon (M1/M2), Raspberry Pi 4/5',btn_sunrise:'In Development'
 },
 ru:{
  nav_what:'Что такое MindOS?',nav_feat:'Возможности',nav_dl:'Скачать',
@@ -329,7 +337,7 @@ ru:{
  neon_d:'Стабильный выпуск на основе Ubuntu и KDE. Рекомендуется для тех, кто ищет лёгкости и классического рабочего стола.',
  paradise_d:'Самый проработанный стабильный выпуск MindOS. Рекомендуется для ежедневного использования со средой GNOME, интеграцией пакетного менеджера mindpkg, низким потреблением ресурсов и плавной работой.',
  sunrise_d:'Создан с нуля с кастомным ядром Linux и собственным репозиторием. (Совсем скоро)',
- btn_neon:'Скачать ISO Neon (v3.1)',btn_paradise:'Скачать ISO Paradise',btn_sunrise:'В разработке'
+ btn_neon:'Скачать ISO Neon (v3.1)',btn_paradise:'Скачать ISO Paradise',btn_paradise_amd64:'Скачать amd64',btn_paradise_arm64:'Скачать arm64',arch_amd64:'Компьютеры Intel / AMD',arch_arm64:'Apple Silicon (M1/M2), Raspberry Pi 4/5',btn_sunrise:'В разработке'
 },
 es:{
  nav_what:'¿Qué es MindOS?',nav_feat:'Características',nav_dl:'Descargar',
@@ -354,7 +362,7 @@ es:{
  neon_d:'Versión estable basada en Ubuntu y KDE. Recomendada para quienes buscan ligereza y una experiencia de escritorio clásica.',
  paradise_d:'La versión más cuidada de MindOS. Recomendada para uso diario con entorno GNOME, integración nativa de mindpkg, bajo consumo de recursos y rendimiento fluido.',
  sunrise_d:'Construida desde cero con un kernel de Linux personalizado y repositorio propio. (Muy pronto)',
- btn_neon:'Descargar ISO de Neon (v3.1)',btn_paradise:'Descargar ISO de Paradise',btn_sunrise:'En desarrollo'
+ btn_neon:'Descargar ISO de Neon (v3.1)',btn_paradise:'Descargar ISO de Paradise',btn_paradise_amd64:'Descargar amd64',btn_paradise_arm64:'Descargar arm64',arch_amd64:'Ordenadores Intel / AMD',arch_arm64:'Apple Silicon (M1/M2), Raspberry Pi 4/5',btn_sunrise:'En desarrollo'
 }};
 T.tr.start='Hadi başlayalım';
 const i18nEls=[...document.querySelectorAll('[data-i18n]')];
